@@ -91,7 +91,6 @@
             this.Text = "Данные о фигуре";
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
         private void InitializeTriComponent()
         {

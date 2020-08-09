@@ -1,1 +1,1 @@
-My first commit
+Added check triangle sides function

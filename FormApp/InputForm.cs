@@ -17,7 +17,7 @@ namespace FormApp
         public double b;
         public double c;
         public string figure;
-        public bool IsClosed { get; set; }
+        public bool flagTri=false;
         public InputForm(string figure)
         {
             this.figure = figure;
@@ -35,6 +35,13 @@ namespace FormApp
             }
         }
 
+        private void GetResult()
+        {
+            if (Program.mainForm.flag == "p")
+                MessageBox.Show(Program.mainForm.figure.GetP());
+            else
+                MessageBox.Show(Program.mainForm.figure.GetS());
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             if (figure == "Прямоугольник")
@@ -48,6 +55,7 @@ namespace FormApp
                 a = double.Parse(textBox1.Text);
                 b = double.Parse(textBox2.Text);
                 c = double.Parse(textBox3.Text);
+                flagTri = c > a ? true: false;
                 Program.mainForm.figure = new Triangle(a, b, c);
             }
             else
@@ -56,11 +64,11 @@ namespace FormApp
                 Program.mainForm.figure = new Circle(a);
             }
 
-
-            if(Program.mainForm.flag=="p")
-                MessageBox.Show(Program.mainForm.figure.GetP());
+            if (flagTri)
+                MessageBox.Show("Данные катета не должны быть больше самой стороны а");
             else
-                MessageBox.Show(Program.mainForm.figure.GetS());
+                GetResult();
+
         }
     }
 }

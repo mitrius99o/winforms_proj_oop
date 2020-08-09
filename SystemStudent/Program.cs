@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SystemStudent
 {
@@ -51,16 +52,17 @@ namespace SystemStudent
     }
     public class Triangle:Figure
     {
-        public double a, h, partA;
+        public double a, h, partA;//partA - переменная, являющаяся составной частью стороны а треугольника и катетом
+                                  //прямоугольного треугольника, созданного с помощью опущенной высоты h на сторону а
+        public double B { get { return Math.Sqrt(h * h + partA * partA); } }
+        public double C { get { return Math.Sqrt(h * h + (a - partA) * (a - partA)); } }
         public Triangle(double a, double h, double partA)
         {
             this.a = a;
             this.h = h;
             this.partA = partA;
-            if (partA > a) this.partA = a; 
+            if (partA > a) this.partA = a;
         }
-        public double B { get { return Math.Sqrt(h * h + partA * partA); }}
-        public double C { get { return Math.Sqrt(h * h + (a - partA) * (a - partA)); }}
         public override void GetInfo()
         {
             Console.WriteLine($"Треугольник со сторонами: {a}, {B} и {C}");
