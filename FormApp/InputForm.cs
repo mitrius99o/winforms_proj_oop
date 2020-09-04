@@ -18,21 +18,23 @@ namespace FormApp
         public double c;
         public string figure;
         public bool flagTri=false;
+        public IInputForm inputForm { get; set; }
         public InputForm(string figure)
         {
             this.figure = figure;
             switch (figure)
             {
                 case "Прямоугольник":
-                    InitializeRecComponent();
+                    inputForm = new RecComponent();
                     break;
                 case "Круг":
-                    InitializeCirComponent();
+                    inputForm = new CirComponent();
                     break;
                 case "Треугольник":
-                    InitializeTriComponent();
+                    inputForm = new TriComponent();
                     break;
             }
+            inputForm.InitializeComponent(this);
         }
 
         private void GetResult()
@@ -42,7 +44,7 @@ namespace FormApp
             else
                 MessageBox.Show(Program.mainForm.figure.GetS());
         }
-        private void button1_Click(object sender, EventArgs e)
+        public void button1_Click(object sender, EventArgs e)
         {
             if (figure == "Прямоугольник")
             {
